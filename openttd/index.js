@@ -64,8 +64,8 @@ class Client {
                 this.isConnected = true;
                 channel.client.openttdConnected.increment();
             }
-            global.logger.info(`Connected to OpenTTD Server: ${this.name}`);
-            channel.send(`\`Connected to OpenTTD Server: ${this.name}\``);
+            global.logger.info(`Conectado ao servidor de OpenTTD: ${this.name}`);
+            channel.send(`\`Conectado ao servidor de OpenTTD: ${this.name}\``);
             // Cache info
             this.gameInfo = data;
             global.logger.trace('gameinfo;', this.gameInfo);
@@ -83,7 +83,7 @@ class Client {
         });
         this.connection.on('newgame', () => {
             global.logger.trace('newgame; resetting caches');
-            channel.send('`New game starting, please stand by`');
+            channel.send('`Comezando unha nova partida... agarda!`');
             // Reset info cache
             this.gameInfo;
             this.clientInfo = {};
@@ -109,7 +109,7 @@ class Client {
         this.connection.on('clientupdate', client => {
             // Send changed info to Discord
             if (this.clientInfo[client.id].name !== client.name) {
-                channel.send(`\`${this.clientInfo[client.id].name} has changed their name to ${client.name}\``);
+                channel.send(`\`${this.clientInfo[client.id].name} mudou o seu nome por ${client.name}\``);
             }
             // Update cached client info
             this.clientInfo[client.id].name = client.name;
@@ -120,31 +120,31 @@ class Client {
             global.logger.trace(`clientjoin: id; ${id}`);
             // Name check in case events happened out of order
             if (this.clientInfo[id].name) {
-                let join = `${this.clientInfo[id].name} has connected`;
+                let join = `${this.clientInfo[id].name} conectouse o servidor`;
                 if (this.clientInfo[id].company === 255) {
-                    join += ' (Spectator)';
+                    join += ' (Espectador)';
                 } else {
                     // Test if company exists
                     if (this.companyInfo[this.clientInfo[id].company]) {
-                        join += ` in Company #${this.clientInfo[id].company+1} (${this.companyInfo[this.clientInfo[id].company].name})`;
+                        join += ` na compañía #${this.clientInfo[id].company+1} (${this.companyInfo[this.clientInfo[id].company].name})`;
                     }
                 }
                 channel.send(`\`${join}\``);
             } else {
-                channel.send(`\`Client ${id} has joined\``);
+                channel.send(`\`Uniuse o xogador ${id}\``);
             }
         });
         this.connection.on('clienterror', client => {
             global.logger.trace(`OpenTTD client error: id; ${client.id}, error; ${client.err} (${openttdUtils.getNetworkErrorCode(client.err)})`);
             // Only handle clienterror when it provides an error and client was fully connected/cached, as this event fires while clients join and leave
             if (client.err && this.clientInfo[client.id]) {
-                channel.send(`\`${this.clientInfo[client.id].name} got an error; ${openttdUtils.getNetworkErrorCode(client.err)}\``);
+                channel.send(`\`${this.clientInfo[client.id].name} tivo un erro; ${openttdUtils.getNetworkErrorCode(client.err)}\``);
                 delete this.clientInfo[client.id];
                 global.logger.trace('clienterror: clientinfo is now;', this.clientInfo);
             }
         });
         this.connection.on('clientquit', client => {
-            channel.send(`\`${this.clientInfo[client.id].name} quit\``);
+            channel.send(`\`${this.clientInfo[client.id].name} desconectouse do servidor\``);
             delete this.clientInfo[client.id];
             global.logger.trace('clientquit: clientinfo is now;', this.clientInfo);
         });
@@ -244,18 +244,18 @@ class Client {
             }
             // New company event is better handled here than via admin port event
             if (chat.action === openttdAdmin.enums.Actions.COMPANY_NEW) {
-                channel.send(`\`${this.clientInfo[chat.id].name} has started a new Company #${this.clientInfo[chat.id].company+1}\``);
+                channel.send(`\`${this.clientInfo[chat.id].name} fundou unha nova compañía: #${this.clientInfo[chat.id].company+1}\``);
             }
             // Player joins a company
             if (chat.action === openttdAdmin.enums.Actions.COMPANY_JOIN) {
                 const clientname = this.clientInfo[chat.id].name;
                 const companyid = this.clientInfo[chat.id].company;
                 const companyname = this.companyInfo[companyid].name;
-                channel.send(`\`${clientname} has joined Company #${companyid+1} (${companyname})\``);
+                channel.send(`\`${clientname} uniuse a compañía #${companyid+1} (${companyname})\``);
             }
             // Player joins spectators
             if (chat.action === openttdAdmin.enums.Actions.COMPANY_SPECTATOR) {
-                channel.send(`\`${this.clientInfo[chat.id].name} is now spectating\``);
+                channel.send(`\`${this.clientInfo[chat.id].name} está agora de espectador\``);
             }
         });
         
