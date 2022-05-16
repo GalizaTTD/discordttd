@@ -1,8 +1,8 @@
-const pluralize = require('pluralize');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = {
     name: 'playercount',
-    description: 'Get quick player count for the current OpenTTD server\'s game',
+    description: 'Comprobando cantos xogadores hai conectados actualmente',
     guildOnly: true,
     openttd: true,
     perm: 'player',
@@ -37,14 +37,14 @@ module.exports = {
                     }
                 }
             }
-
-            let reply;
-            if(count === 0) {
-                reply = 'No players connected.';
-            } else {
-                reply = `${players} ${pluralize('player', players)} connected, ${spec} ${pluralize('spectator', spec)} connected. ${count} total ${pluralize('client', count)}.`;
-            }
-            message.reply(`\`${reply}\``);
+			const reply = new MessageEmbed()
+			.setTitle(openttd.gameInfo.name)
+			.setColor(15258703)
+			.addFields([
+				{ name: 'Xogadores conectados', value: players, inline: true },
+				{ name: 'Espectadores', value: spec, inline: true },
+			]);
+            message.reply(reply);
         } else {
             message.reply('Non conectado ó servidor');
         }
