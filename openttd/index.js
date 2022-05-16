@@ -230,8 +230,8 @@ class Client {
         // Handle chat
         this.connection.on('chat', chat => {
             global.logger.trace('chat;', chat);
-            // Only pass broadcast chats
-            if (chat.action === openttdAdmin.enums.Actions.CHAT && chat.desttype === openttdAdmin.enums.DestTypes.BROADCAST) {
+            // Only pass broadcast chats which are not sent from the server (i.e. MOTD)
+            if (chat.action === openttdAdmin.enums.Actions.CHAT && chat.desttype === openttdAdmin.enums.DestTypes.BROADCAST && chat.id != 1) {
                 // Convert standard smilies and emojis
                 let msg = openttdUtils.emojify(chat.message);
 
@@ -314,7 +314,7 @@ Client.prototype.sendChat = function(message) {
         msg = msg.replace(`<:${em.identifier}>`, `:${em.name}:`);
     });
     
-    this.connection.send_chat(openttdAdmin.enums.Actions.CHAT, openttdAdmin.enums.DestTypes.BROADCAST, 1, `<${name}> ${msg}`);
+    this.connection.send_chat(openttdAdmin.enums.Actions.CHAT, openttdAdmin.enums.DestTypes.BROADCAST, 1, `[Discord] <${name}> ${msg}`);
 };
 
 // Function to clean up
