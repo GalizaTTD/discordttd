@@ -1,6 +1,6 @@
 module.exports = {
     name: 'password',
-    description: 'Asks for the current OpenTTD server\'s password',
+    description: 'Pide a contrasinal prao servidor configurado de OpenTTD',
     guildOnly: true,
     openttd: true,
     alias: ['pw'],
@@ -25,9 +25,9 @@ module.exports = {
                 // Build text for discord
                 let passwordText;
                 if (pwd) {
-                    passwordText = `\`Current password: ${pwd}\``;
+                    passwordText = `\`Contrasinal actual: ${pwd}\``;
                 } else {
-                    passwordText = '`There is no password for this server`';
+                    passwordText = '`Non está configurada a contrasinal deste servidor`';
                 }
                 // If we've previously output
                 if (pwMessage) {
@@ -97,7 +97,7 @@ module.exports = {
             doPasswordCheck();
             const PASSWORDTIMER = setInterval(doPasswordCheck, 5000);
         } else {
-            message.reply('Not connected');
+            message.reply('Non conectado ó servidor');
         }
     }
 };

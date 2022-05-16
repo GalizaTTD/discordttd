@@ -2,7 +2,7 @@ const utils = require('../openttd/utils');
 
 module.exports = {
     name: 'companies',
-    description: 'Get company info for the current OpenTTD server\'s game',
+    description: 'Obten información das compañías que hai actualmente no servidor',
     guildOnly: true,
     openttd: true,
     perm: 'player',
@@ -14,7 +14,7 @@ module.exports = {
         if (openttd.isConnected) {
             // If there aren't any companies yet, reply and stop
             if(Object.keys(openttd.companyInfo).length === 0) {
-                message.reply('`No companies in game.`');
+                message.reply('`Non hai compañías no xogo.`');
                 return;
             } 
 
@@ -22,14 +22,14 @@ module.exports = {
             const companies = [];
             for (const COMPANYID in openttd.companyInfo) {
                 const COMPANY = openttd.companyInfo[COMPANYID];
-                let text = `Company ${parseInt(COMPANYID)+1}`;
+                let text = `Compañía ${parseInt(COMPANYID)+1}`;
                 if (COMPANYID.isai) {
-                    text += ' (AI)';
+                    text += ' (IA)';
                 }
                 text += `: ${COMPANY.name} (${utils.getColourName(COMPANY.colour)})`;
-                text += `\nManager: ${COMPANY.manager} Started: ${COMPANY.startyear}`;
-                text += `\nVehicles: Trains: ${COMPANY.vehicles.trains} Trucks: ${COMPANY.vehicles.lorries} Busses: ${COMPANY.vehicles.busses} Airplanes: ${COMPANY.vehicles.planes} Ships: ${COMPANY.vehicles.ships}`;
-                text += `\nStations: Trains: ${COMPANY.stations.trains} Trucks: ${COMPANY.stations.lorries} Busses: ${COMPANY.stations.busses} Airplanes: ${COMPANY.stations.planes} Ships: ${COMPANY.stations.ships}`;
+                text += `\nManager: ${COMPANY.manager} Fundación: ${COMPANY.startyear}`;
+                text += `\nVehículos: Trens: ${COMPANY.vehicles.trains} Camións: ${COMPANY.vehicles.lorries} Buses: ${COMPANY.vehicles.busses} Avións: ${COMPANY.vehicles.planes} Barcos: ${COMPANY.vehicles.ships}`;
+                text += `\nEstacións: Trens: ${COMPANY.stations.trains} Camións: ${COMPANY.stations.lorries} Buses: ${COMPANY.stations.busses} Avións: ${COMPANY.stations.planes} Barcos: ${COMPANY.stations.ships}`;
                 companies.push(text);
             }
 
@@ -38,7 +38,7 @@ module.exports = {
                 message.channel.send(`\`${reply}\``);
             });
         } else {
-            message.reply('Not connected');
+            message.reply('Non conectado ó servidor');
         }
     }
 };

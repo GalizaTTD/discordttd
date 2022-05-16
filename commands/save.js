@@ -1,6 +1,6 @@
 module.exports = {
     name: 'save',
-    description: 'Saves the current config',    
+    description: 'Garda a configuración actual',    
     perm: 'owner',
     execute(message) {
         global.logger.info('Saving config');
@@ -8,10 +8,10 @@ module.exports = {
             .then(result => {
                 if (result === 'OK') {
                     global.logger.info('Config saved');
-                    message.reply('Config saved');
+                    message.reply('Configuración gardada');
                 } else {
                     global.logger.error(`There was an error writing the config:\n${result}`);
-                    message.reply('There was an error saving, please see the logs for more details');
+                    message.reply('Houbo un erro no gardado, comproba os logs para máis detalles');
                 }
             });
     }

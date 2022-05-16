@@ -1,6 +1,6 @@
 module.exports = {
     name: 'connect',
-    description: 'Connect to the OpenTTD server mapped to this channel',
+    description: 'Conéctase o servidor de OpenTTD que está configurado nesta canle',
     guildOnly: true,
     openttd: true,
     perm: 'admin',
@@ -11,7 +11,7 @@ module.exports = {
 
         // Attempt to connect
         if (openttd.isConnected) {
-            return message.reply('Already connected');
+            return message.reply('Xa conectado ó servidor');
         } else {
             return openttd.connect();
         }

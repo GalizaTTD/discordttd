@@ -2,7 +2,7 @@ const moment = require('moment');
 
 module.exports = {
     name: 'ping',
-    description: 'Pings the current OpenTTD server',
+    description: 'Faille un ping o servidor actual de OpenTTD',
     guildOnly: true,
     openttd: true,
     alias: ['ding'],
@@ -36,7 +36,7 @@ module.exports = {
             pingTime = moment();
             openttd.connection.send_ping(pingTime.format('X'));
         } else {
-            message.reply('Not connected');
+            message.reply('Non conectado ó servidor');
         }
     }
 };

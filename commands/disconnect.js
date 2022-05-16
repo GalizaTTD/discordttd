@@ -1,6 +1,6 @@
 module.exports = {
     name: 'disconnect',
-    description: 'Disonnect from the OpenTTD server mapped to this channel',
+    description: 'Desconectase do servidor de OpenTTD configurado nesta canle',
     guildOnly: true,
     openttd: true,
     perm: 'admin',
@@ -13,7 +13,7 @@ module.exports = {
         if (openttd.isConnected) {
             return openttd.disconnect();
         } else {
-            message.reply('Not connected');
+            message.reply('Non conectado ó servidor');
         }
     }
 };

@@ -3,7 +3,7 @@ const OpenTTD = require('../openttd');
 
 module.exports = {
     name: 'newserver',
-    description: 'Set up a new OpenTTD server for this channel, you can optionally provide a name, server address and port. For security the admin port password must be added via config.',
+    description: 'Configura un novo servidor de OpenTTD nesta canle. Opcionalmente podes indicar o nome, dirección e porto. Por razóns de seguridade a contrasinal de administración tense que engadir no arquivo de configuración.',
     usage: '<[name] [address] [port]>',
     guildOnly: true,
     perm: 'owner',
@@ -11,7 +11,7 @@ module.exports = {
         // Check we're not overwriting existing configs
         const openttd = message.client.channelMap.get(message.channel.id);
         if (openttd) {
-            message.reply('This channel already has a config set up');
+            message.reply('Esta canle xa ten unha configuración establecida');
             return;
         }
 
@@ -43,8 +43,8 @@ module.exports = {
         mapConfig.local = map.isLocal;
         mapConfig.savepath = map.savepath;
 
-        global.logger.info(`New OpenTTD server set up for channel: ${message.channel.id}`);
-        message.reply('Config set up, remember to save the config file');
+        global.logger.info(`Configurado novo servidor de OpenTTD nesta canle: ${message.channel.id}`);
+        message.reply('Configuración establecida, lembra gardala no arquivo de configuración');
         global.logger.trace('channelMapping:', message.client.config.channelMapping);
     }
 };

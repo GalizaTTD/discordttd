@@ -2,7 +2,7 @@ const openttdUtils = require('../openttd/utils');
 
 module.exports = {
     name: 'info',
-    description: 'Get some basic info about the current OpenTTD server\'s game',
+    description: 'Obtén algunha información básica o servidor de OpenTTD',
     guildOnly: true,
     openttd: true,
     perm: 'player',
@@ -29,7 +29,7 @@ module.exports = {
             const reply = `${NAME} ${VERSION} ${ADDRESS} ${TYPE} ${STARTDATE} ${CURDATE} ${LANDSCAPE} ${SIZE}`;
             message.reply(`\`${reply}\``);
         } else {
-            message.reply('Not connected');
+            message.reply('Non conectado ó servidor');
         }
     }
 };

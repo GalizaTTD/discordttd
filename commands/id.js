@@ -1,6 +1,6 @@
 module.exports = {
     name: 'id',
-    description: 'Returns the users id, or the channel id',
+    description: 'Devolve a ID do usuario ou canle de discord',
     usage: '[channel]',
     execute(message, args) {
         if (args[0] === 'channel') {

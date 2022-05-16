@@ -50,7 +50,7 @@ module.exports = {
             reply = reply.join('\n');
             message.reply(`\`${reply}\``);
         } else {
-            message.reply('Not connected');
+            message.reply('Non conectado ó servidor');
         }
     }
 };

@@ -1,6 +1,6 @@
 module.exports = {
     name: 'shutdown',
-    description: 'Gracefully shutdown the bot',
+    description: 'Apaga este bot',
     alias: ['kill'],
     perm: 'owner',
     execute(message) {

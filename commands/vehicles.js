@@ -1,6 +1,6 @@
 module.exports = {
     name: 'vehicles',
-    description: 'Get total vehicle numbers for the current OpenTTD server\'s game',
+    description: 'Comproba o total de vehículos que hai actualmente neste servidor de OpenTTD',
     guildOnly: true,
     openttd: true,
     perm: 'player',
@@ -12,7 +12,7 @@ module.exports = {
         if (openttd.isConnected) {
             // If there aren't any companies yet, reply and stop
             if(Object.keys(openttd.companyInfo).length === 0) {
-                message.reply('`No companies in game.`');
+                message.reply('`Non hai compañías no xogo.`');
                 return;
             } 
 
@@ -29,10 +29,10 @@ module.exports = {
                 ships += COMPANY.vehicles.ships;
             }
 
-            const reply = `Total vehicle counts:\nTrains: ${trains} Road Vehicles: ${road} Airplanes: ${airplanes} Ships: ${ships}`;
+            const reply = `Total de vehículos:\nTrens: ${trains} Vehículos de estrada: ${road} Avións: ${airplanes} Barcos: ${ships}`;
             message.channel.send(`\`${reply}\``);
         } else {
-            message.reply('Not connected');
+            message.reply('Non conectado ó servidor');
         }
     }
 };

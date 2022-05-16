@@ -2,7 +2,7 @@ const openttdUtils = require('../openttd/utils');
 
 module.exports = {
     name: 'date',
-    description: 'Gives the in game date for the current OpenTTD server\'s password',
+    description: 'Consulta a data actual dentro do xogo',
     guildOnly: true,
     openttd: true,
     perm: 'player',
@@ -12,10 +12,10 @@ module.exports = {
 
         // Check connection
         if (openttd.isConnected) {
-            const DATE = `Current Date: ${openttdUtils.convertOpenttdDate(openttd.gameDate).format('DD MMM YYYY')}`;
+            const DATE = `Data Actual de GalizaTTD: ${openttdUtils.convertOpenttdDate(openttd.gameDate).format('DD MMM YYYY')}`;
             message.reply(`\`${DATE}\``);
         } else {
-            message.reply('Not connected');
+            message.reply('Non conectado ó servidor');
         }
     }
 };

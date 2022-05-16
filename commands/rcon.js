@@ -36,7 +36,7 @@ module.exports = {
             // Send rcon
             openttd.sendRcon(RCONCMD);
         } else {
-            message.reply('Not connected');
+            message.reply('Non conectado ó servidor');
         }
     }
 };
