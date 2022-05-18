@@ -2,7 +2,7 @@ const moment = require('moment');
 
 module.exports = {
     name: 'ping',
-    description: 'Faille un ping o servidor actual de OpenTTD',
+    description: 'Faille un ping ó servidor actual de OpenTTD',
     guildOnly: true,
     openttd: true,
     alias: ['ding'],

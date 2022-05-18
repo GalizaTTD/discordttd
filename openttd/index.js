@@ -64,8 +64,8 @@ class Client {
                 this.isConnected = true;
                 channel.client.openttdConnected.increment();
             }
-            global.logger.info(`Conectado ao servidor de OpenTTD: ${this.name}`);
-            channel.send(`\`Conectado ao servidor de OpenTTD: ${this.name}\``);
+            global.logger.info(`Conectado ó servidor de OpenTTD: ${this.name}`);
+            channel.send(`\`Conectado ó servidor de OpenTTD: ${this.name}\``);
             // Cache info
             this.gameInfo = data;
             global.logger.trace('gameinfo;', this.gameInfo);
@@ -120,7 +120,7 @@ class Client {
             global.logger.trace(`clientjoin: id; ${id}`);
             // Name check in case events happened out of order
             if (this.clientInfo[id].name) {
-                let join = `${this.clientInfo[id].name} conectouse o servidor`;
+                let join = `${this.clientInfo[id].name} conectouse ó servidor`;
                 if (this.clientInfo[id].company === 255) {
                     join += ' (Espectador)';
                 } else {
@@ -131,7 +131,7 @@ class Client {
                 }
                 channel.send(`\`${join}\``);
             } else {
-                channel.send(`\`Uniuse o xogador ${id}\``);
+                channel.send(`\`Uníuse o xogador ${id}\``);
             }
         });
         this.connection.on('clienterror', client => {
@@ -251,7 +251,7 @@ class Client {
                 const clientname = this.clientInfo[chat.id].name;
                 const companyid = this.clientInfo[chat.id].company;
                 const companyname = this.companyInfo[companyid].name;
-                channel.send(`\`${clientname} uniuse a compañía #${companyid+1} (${companyname})\``);
+                channel.send(`\`${clientname} uníuse a compañía #${companyid+1} (${companyname})\``);
             }
             // Player joins spectators
             if (chat.action === openttdAdmin.enums.Actions.COMPANY_SPECTATOR) {

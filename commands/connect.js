@@ -1,6 +1,6 @@
 module.exports = {
     name: 'connect',
-    description: 'Conéctase o servidor de OpenTTD que está configurado nesta canle',
+    description: 'Conéctarse ó servidor de OpenTTD que está configurado nesta canle',
     guildOnly: true,
     openttd: true,
     perm: 'admin',

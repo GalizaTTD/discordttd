@@ -3,7 +3,7 @@ const openttdUtils = require('../openttd/utils');
 
 module.exports = {
 	name: 'info',
-	description: 'Obtén algunha información básica o servidor de OpenTTD',
+	description: 'Obtén algunha información básica do servidor de OpenTTD',
 	guildOnly: true,
 	openttd: true,
 	perm: 'player',
