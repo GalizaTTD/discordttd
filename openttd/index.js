@@ -205,11 +205,11 @@ class Client {
             global.logger.trace('companyupdate: companyinfo is now;', this.companyInfo);
         });
         this.connection.on('companyremove', company => {
-            let remove = `Company #${company.id+1} (${this.companyInfo[company.id].name}) was removed`;
+            let remove = `A Compañía #${company.id+1} (${this.companyInfo[company.id].name}) foi`;
             switch(company.reason) {
-                case openttdAdmin.enums.CompanyRemoveReasons.MANUAL: remove += ' manually'; break;
-                case openttdAdmin.enums.CompanyRemoveReasons.AUTOCLEAN: remove += ' by autoclean'; break;
-                case openttdAdmin.enums.CompanyRemoveReasons.BANKRUPT: remove += ' after going bankrupt'; break;
+                case openttdAdmin.enums.CompanyRemoveReasons.MANUAL: remove += ' pola Xunta de Galicia'; break;
+                case openttdAdmin.enums.CompanyRemoveReasons.AUTOCLEAN: remove += ' por falta de actividade.'; break;
+                case openttdAdmin.enums.CompanyRemoveReasons.BANKRUPT: remove += ' despois dun concurso de acreedores'; break;
             }
             channel.send(`\`${remove}\``);
             delete this.companyInfo[company.id];
