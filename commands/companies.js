@@ -7,6 +7,7 @@ module.exports = {
 	guildOnly: true,
 	openttd: true,
 	perm: 'player',
+    alias: ['compañias'],
 	execute(message) {
 		// Get the OpenTTD server for the channel
 		const openttd = message.client.channelMap.get(message.channel.id);

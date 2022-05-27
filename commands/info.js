@@ -36,10 +36,10 @@ module.exports = {
 					{ name: 'Xogadores online', value: `${Object.keys(openttd.clientInfo).length-1}/255`, inline: true },
 					{ name: 'Tamaño do mapa', value: `${openttd.gameInfo.map.mapheight}x${openttd.gameInfo.map.mapwidth}`, inline: true },
 					{ name: 'Data de inicio', value: openttdUtils.convertOpenttdDate(openttd.gameInfo.map.startdate).format('YYYY-MM-DD'), inline: true },
-
 					{ name: 'Compañias', value: `${Object.keys(openttd.companyInfo).length}/15`, inline: true },
 					{ name: 'Versión do xogo', value: openttd.gameInfo.version, inline: true },
 					{ name: 'Data actual', value: openttdUtils.convertOpenttdDate(openttd.gameDate).format('YYYY-MM-DD'), inline: true },
+					{ name: 'IP do Servidor', value: openttd.address, inline: false },
 				]);
 			message.channel.send(embeds);
 		} else {
