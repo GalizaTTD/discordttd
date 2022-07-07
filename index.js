@@ -149,23 +149,23 @@ discordClient.on('message', message => {
     // Check command is in cached command list
     const command = discordClient.commands.get(commandName) || discordClient.commands.find(c => c.alias && c.alias.includes(commandName));
     if (!command) {
-        logger.debug(`Invalid command: ${commandName}`);
+        logger.debug(`Este comando non é válido: ${commandName}`);
         message.react('❌');
         return;
     }
 
     // Check permissions
     if (!perm.hasPerm(message, command.perm)) {
-        message.reply('You do not have permissions for this command');
+        message.reply('Non tes permisos para utilizar este comando!');
         message.react('❌');
         return;
     }
 
     // Check for arguement requirements
     if (command.args && !args.length) {
-        let reply = 'Missing arguments for command';
+        let reply = 'Faltan argumentos neste comando';
         if (command.usage) {
-            reply += `\nProper usage: ${discordClient.config.prefix}${commandName} ${command.usage}`;
+            reply += `\nUso correcto: ${discordClient.config.prefix}${commandName} ${command.usage}`;
         }
         message.reply(reply);
         message.react('❓');
@@ -174,13 +174,13 @@ discordClient.on('message', message => {
 
     // Check for channel requirements
     if (command.guildOnly && message.channel.type !== 'text') {
-        message.reply('This command must be run on a channel');
+        message.reply('Este comando debe executarse nunha canle!');
         return;
     }
 
     // Check for OpenTTD requirement
     if (command.openttd && !discordClient.channelMap.get(message.channel.id)) {
-        message.reply('This command requires an OpenTTD server set up for this channel');
+        message.reply('Este comando precisa dun servidor de OpenTTD configurado nesta canle');
         message.react('❌');
         return;
     }
